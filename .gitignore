@@ -1,2 +1,5 @@
-# ignore application key
-auth.json
+# ignore all json files
+*.json
+
+# ignore node modules
+node_modules
