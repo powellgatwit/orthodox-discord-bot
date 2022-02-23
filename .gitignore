@@ -1,2 +1,8 @@
 # ignore auth key file
 auth.json
+
+# ignore the eslintrc.json file? i think
+.eslintrc.json
+
+# ignore my local node modules
+node_modules
