@@ -28,12 +28,53 @@ function dailymessage() {
 		result.on('end', () => {
 			const body = JSON.parse(data);
 
-			/* 	Daily Message		*/
+			/* 	Title, feasts	*/
+
+			var msg = new String(
+				"Good morning! Today is the " + body.titles + ".\n"
+			);
+
+			if (body.feasts != null) {
+
+				msg = msg.concat(
+					"It is the feast of the " + body.feasts + ".\n"
+				);
+			}
+
+			/*		Saints	 */
+
+			if (body.saints != null) {
+				msg = msg.concat(
+					"On this day we commemmorate (the) " + body.saints + ".\n"
+				);
+			}
+
+			/* 	Fasting	*/
+
+			if (body.fast_level > 0) {
+				msg = msg.concat("> Today is a fasting day.\n");
+
+				//name of fast, if there is one
+				if (body.fast_level > 1) {
+					msg = msg.concat(
+						"> We are in the " + body.fast_level_desc + ".\n"
+					);
+				}
+
+				//fast exception?
+				if (body.fast_exception > 0) {
+					msg = msg.concat(
+						"> *Today's note: " + body.fast_exception_desc + ".*"
+					);
+				}
+			}
 
 			const channel = client.channels.cache.get('850364310319661109');
-			channel.send("> ```Good morning :)\n\nToday is the" + body.titles + ".```")
+
+			channel.send(msg)
 			.then(message => console.log(`Sent message: ${message.content}`))
 			.catch(console.error);
+
 		})
 	}).on('error', (e) => {
 		console.error(e);
@@ -63,9 +104,11 @@ function execute() {
 	if (sunrise.h == now.h && sunrise.m == now.m) {
 		dailymessage();
 	}
+	//for testing only
+	dailymessage();
 
 }
 
 // execute() runs every x seconds, dailymessage() only runs at sunrise
-const x = 20000
+const x = 5000;//59000
 setInterval(function() { execute(); }, x);
