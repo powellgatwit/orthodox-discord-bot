@@ -18,7 +18,10 @@ client.login(token);
 
 function dailymessage() {
 
-	https.get('https://orthocal.info/api/oca/', (result) => {
+	let api = 'https://orthocal.info/api/oca/';
+	let george = 'https://orthocal.info/api/oca/2022/4/23/';
+
+	https.get(api, (result) => {
 		let data = "";
 		console.log('statusCode:', result.statusCode);
 
