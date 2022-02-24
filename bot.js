@@ -15,6 +15,7 @@ client.once('ready', () => {
 // Login to Discord with your client's token
 client.login(token);
 
+
 function dailymessage() {
 
 	https.get('https://orthocal.info/api/oca/', (result) => {
@@ -26,7 +27,13 @@ function dailymessage() {
 		});
 		result.on('end', () => {
 			const body = JSON.parse(data);
-			console.log(body.saints);
+
+			/* 	Daily Message		*/
+
+			const channel = client.channels.cache.get('850364310319661109');
+			channel.send("> ```Good morning :)\n\nToday is the" + body.titles + ".```")
+			.then(message => console.log(`Sent message: ${message.content}`))
+			.catch(console.error);
 		})
 	}).on('error', (e) => {
 		console.error(e);
@@ -35,31 +42,30 @@ function dailymessage() {
 }
 
 function execute() {
+
 	//get full current timestamp
 	const today = new Date();
 	//get timestamp for sunrise at hchc
 	const hchc = getSunrise(42.31658174845979, -71.1277771264774, today);
 
 	//get the exact hour:minute for both
-	const sunrise = hchc.getTime();
-	const now = today.getTime();
-
-	//console.log("current time: " + now + " sunrise is: " + sunrise);
-
-	const diff = now - sunrise;
-
-	if (diff < 0) {
-		console.log("hours until sunrise: " + diff/3600000);
-	} else {
-		console.log("hours since sunrise: " + diff/3600000);
+	const sunrise = {
+		"h": hchc.getHours(),
+		"m": hchc.getMinutes()
+	}
+	const now = {
+		"h": today.getHours(),
+		"m": today.getMinutes()
 	}
 
-	// both values are in ms, need to change to minute
-	if (sunrise == now) {
+	//console.log("current time: " + now.h + ":" + now.m + " sunrise is: " + sunrise.h + ":" + sunrise.m);
+
+	if (sunrise.h == now.h && sunrise.m == now.m) {
 		dailymessage();
 	}
 
 }
 
-// execute() runs every 3 seconds, dailymessage() only runs at sunrise
-setInterval(function() { execute(); }, 3000);
+// execute() runs every x seconds, dailymessage() only runs at sunrise
+const x = 20000
+setInterval(function() { execute(); }, x);
