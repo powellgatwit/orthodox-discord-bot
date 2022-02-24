@@ -45,7 +45,7 @@ function dailymessage() {
 
 			if (body.saints != null) {
 				msg = msg.concat(
-					"On this day we commemmorate (the) " + body.saints + ".\n"
+					"On this day we commemorate (the) " + body.saints + ".\n"
 				);
 			}
 
@@ -72,7 +72,7 @@ function dailymessage() {
 			const channel = client.channels.cache.get('850364310319661109');
 
 			channel.send(msg)
-			.then(message => console.log(`Sent message: ${message.content}`))
+			.then(message => console.log(`${message.content}`))
 			.catch(console.error);
 
 		})
