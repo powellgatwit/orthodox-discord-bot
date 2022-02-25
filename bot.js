@@ -107,11 +107,9 @@ function execute() {
 	if (sunrise.h == now.h && sunrise.m == now.m) {
 		dailymessage();
 	}
-	//for testing only
-	dailymessage();
 
 }
 
 // execute() runs every x seconds, dailymessage() only runs at sunrise
-const x = 5000;//59000
+const x = 59000;//59000
 setInterval(function() { execute(); }, x);
