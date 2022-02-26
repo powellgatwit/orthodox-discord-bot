@@ -9,6 +9,9 @@ At sunrise (boston, MA) sends a message with calendar information, including:
 - saints commemorated (if any)
 - fasting information (if any)
 
+## Adding this bot to your server
+1. This bot is currently private. email [powellg@wit.edu](mailto:powellg@wit.edu) if you are interested in adding it to your server
+
 ## Installation
 1. Install node.js.
 2. Download this repository.
