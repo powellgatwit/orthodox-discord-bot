@@ -10,7 +10,7 @@ At sunrise (boston, MA) sends a message with calendar information, including:
 - fasting information (if any)
 
 ## Adding this bot to your server
-1. This bot is currently private. email [powellg@wit.edu](mailto:powellg@wit.edu) if you are interested in adding it to your server
+1. [click this link](https://discord.com/api/oauth2/authorize?client_id=946083611046711296&permissions=67577920&scope=bot) to add the bot to your server :)
 
 ## Installation
 1. Install node.js.
