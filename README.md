@@ -11,6 +11,7 @@ At sunrise (boston, MA) sends a message with calendar information, including:
 
 ## Adding this bot to your server
 1. [click this link](https://discord.com/api/oauth2/authorize?client_id=946083611046711296&permissions=67577920&scope=bot) to add the bot to your server :)
+2. Create a text channel called #calendar for the bot to send its daily messages in. 
 
 ## Installation
 1. Install node.js.
