@@ -74,7 +74,7 @@ function dailymessage() {
 
 			//const channel = client.channels.cache.get('850364310319661109');
 
-			const channel = message.guild.channels.cache.find(ch => ch.name === "calendar");
+			const channel = client.channels.cache.find(ch => ch.name === "calendar");
 
 			channel.send(msg)
 			.then(message => console.log(`${message.content}`))
@@ -109,7 +109,7 @@ function execute() {
 	if (sunrise.h == now.h && sunrise.m == now.m) {
 		dailymessage();
 	}
-
+	
 }
 
 const x = 59000; //check for sunrise every 59 seconds
