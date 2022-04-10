@@ -115,7 +115,8 @@ function execute() {
 		//code used from: https://stackoverflow.com/questions/63261585/how-to-send-a-message-to-all-servers
 		guildsCache.each(guild => {
 			try {
-				const channel = guild.channels.cache.find(channel => channel.name === 'calendar');
+				//for either the Calendar or General channel
+				const channel = guild.channels.cache.find(channel => channel.name === 'calendar') || guild.channels.cache.find(channel => channel.name === 'general');
 				//for the first channel
 				const firstChannel = guild.channels.cache.find(firstChannel => firstChannel.isText());
 				if (channel) {
@@ -125,7 +126,7 @@ function execute() {
 				} else {
 					//console.log('The server ' + guild.name + ' has no channels named calendar.');
 					//dailymessage(firstChannel);
-					firstChannel.send("It is recommended that you create a channel called #calendar for this bot to send messages in.  Thanks :)");
+					firstChannel.send("It is recommended that you create a channel called #calendar (or #general) for this bot to send messages in. Thanks :)");
 					//console.log("In the " + guild.name + " server, message was sent to " + firstChannel.name);
 					remind++;
 				}
@@ -136,7 +137,7 @@ function execute() {
 		});
 
 		//print status at sunrise
-		console.log(success + " sent, " + remind + " reminded, " + fail + " failed.");
+		console.log(today.toDateString() + ": " + success + " sent, " + remind + " reminded, " + fail + " failed.");
 
 	}
 }
